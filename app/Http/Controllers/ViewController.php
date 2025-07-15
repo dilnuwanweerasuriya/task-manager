@@ -64,45 +64,42 @@ class ViewController extends DataController
                                 config('site-specific.tempusdominus-bootstrap-4-min-js'),config('site-specific.summernote-bs4-min-js'),
                                 config('site-specific.jquery-overlayScrollbars-min-js')),
             'userCount'     => $this->getDashboardCounts()['users'],
-            // 'clientCount'   => $this->getDashboardCounts()['clients'],
-            // 'projectCount'  => $this->getDashboardCounts()['projects'],
             'taskCount'     => $this->getDashboardCounts()['tasks'],
-            // 'attendance'    => $this->getAttendance(),
-            // 'myTeam'        => $this->myTeamData(),
         ];
 
         return $this->default($data);
     }
 
-    
-    // public function userRole(){
-    //     $data = [
-    //         'title'     => 'User Role',
-    //         'view'      => 'user_role',
-    //         'css'       => array(config('site-specific.datatable-min-css')),
-    //         'script'    => array(config('site-specific.datatable-min-js')),
-    //         'userRoles' => $this->getUserRoles(),
-    //     ];
+    //User Role Page Function
+    public function userRole(){
+        $data = [
+            'title'     => 'User Role',
+            'view'      => 'user_role',
+            'css'       => array(config('site-specific.datatable-bootstrap4-min-css'), config('site-specific.responsive-bootstrap4-min-css'), config('site-specific.buttons-bootstrap4-min-css'), config('site-specific.all-min-css')),
+            'script'    => array(config('site-specific.jquery-datatables-min-js'), config('site-specific.datatables-bootstrap-min-js'), config('site-specific.responsive-bootstrap-min-js'), config('site-specific.responsive-bootstrap4-min-js'), config('site-specific.datatables-buttons-min-js'), config('site-specific.buttons-bootstrap4-min-js'), config('site-specific.buttons-html5-min-js'), config('site-specific.buttons-print-min-js'), config('site-specific.buttons-colvis-min-js')),
+            'userRoles' => $this->getUserRoles(),
+        ];
 
-    //     return $this->default($data);
-    // }
+        return $this->default($data);
+    }
 
 
-    // public function userRoleEdit(Request $request){
-    //     $id          = $request->route('id');
-    //     $user_role   = $this->getEditUserRole($id);
+    //User Role Edit Page Function
+    public function userRoleEdit(Request $request){
+        $id          = $request->route('id');
+        $user_role   = $this->getEditUserRole($id);
 
-    //     $data = [
-    //         'title'                     => 'User Role Edit',
-    //         'view'                      => 'user_role_edit',
-    //         'user_role_permission'      => $this->getPermission(),
-    //         'id'                        => $id,
-    //         'user_role'                 => $user_role,
-    //         'selected_permission'       => $this->getUserRolePermission($id)
-    //     ];
+        $data = [
+            'title'                     => 'User Role Edit',
+            'view'                      => 'user_role_edit',
+            'user_role_permission'      => $this->getPermission(),
+            'id'                        => $id,
+            'user_role'                 => $user_role,
+            'selected_permission'       => $this->getUserRolePermission($id)
+        ];
 
-    //     return $this->default($data);
-    // }
+        return $this->default($data);
+    }
 
     //User Create Page Function
     public function userCreate(){
@@ -138,8 +135,8 @@ class ViewController extends DataController
         $data = [
             'title'     => 'User List',
             'view'      => 'user_list',
-            'css'           => array(config('site-specific.datatable-bootstrap4-min-css'), config('site-specific.responsive-bootstrap4-min-css'), config('site-specific.buttons-bootstrap4-min-css'), config('site-specific.all-min-css')),
-            'script'        => array(config('site-specific.jquery-datatables-min-js'), config('site-specific.datatables-bootstrap-min-js'), config('site-specific.responsive-bootstrap-min-js'), config('site-specific.responsive-bootstrap4-min-js'), config('site-specific.datatables-buttons-min-js'), config('site-specific.buttons-bootstrap4-min-js'), config('site-specific.buttons-html5-min-js'), config('site-specific.buttons-print-min-js'), config('site-specific.buttons-colvis-min-js')),
+            'css'       => array(config('site-specific.datatable-bootstrap4-min-css'), config('site-specific.responsive-bootstrap4-min-css'), config('site-specific.buttons-bootstrap4-min-css'), config('site-specific.all-min-css')),
+            'script'    => array(config('site-specific.jquery-datatables-min-js'), config('site-specific.datatables-bootstrap-min-js'), config('site-specific.responsive-bootstrap-min-js'), config('site-specific.responsive-bootstrap4-min-js'), config('site-specific.datatables-buttons-min-js'), config('site-specific.buttons-bootstrap4-min-js'), config('site-specific.buttons-html5-min-js'), config('site-specific.buttons-print-min-js'), config('site-specific.buttons-colvis-min-js')),
             'users'     => $this->getAllUsers(),
         ];
 

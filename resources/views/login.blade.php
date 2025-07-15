@@ -19,7 +19,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="/index2.html"><b>EMS</b></a>
+            <a href="/index2.html"><b>Task Manager</b></a>
         </div>
 
         <div class="card">
@@ -59,6 +59,9 @@
 
                     </div>
                 </form>
+                <div class="text-center mt-2">
+                    <a href="/register">Don't have an account?</a>
+                </div>
             </div>
 
         </div>

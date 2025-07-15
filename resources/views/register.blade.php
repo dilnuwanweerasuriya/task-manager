@@ -19,7 +19,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href=""><b>TaskManager</b></a>
+            <a href=""><b>Task Manager</b></a>
         </div>
         <div class="card">
             <div class="card-body register-card-body">
@@ -69,17 +69,6 @@
                         <button type="submit" class="btn btn-primary btn-block">Register</button>
                     </div>
                 </form>
-                {{-- <div class="social-auth-links text-center">
-                    <p>- OR -</p>
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i>
-                        Sign up using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i>
-                        Sign up using Google+
-                    </a>
-                </div> --}}
                 <div class="text-center mt-2">
                     <a href="/login">I already have an account</a>
                 </div>

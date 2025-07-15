@@ -44,7 +44,7 @@ Route::group([
 
     Route::get ('/user-create'                 , 'ViewController@userCreate')->name('user-create');
 
-        Route::get ('/user-list'                    , 'ViewController@userList')->name('user-list');
+    Route::get ('/user-list'                    , 'ViewController@userList')->name('user-list');
 
     Route::get ('/user-edit/{id?}'             , 'ViewController@useredit')->name('user-edit');
 

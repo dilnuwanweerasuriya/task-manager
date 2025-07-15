@@ -28,6 +28,11 @@ return [
                 'permission' => 'user-list',
                 'link' => '/user-list',
             ],
+            [
+                'title' => 'User Role',
+                'permission' => 'user-role',
+                'link' => '/user-role',
+            ],
         ],
     ],
     [

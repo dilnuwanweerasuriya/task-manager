@@ -8,7 +8,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h3 class="card-title">{{ $user_role->name }} User Role Permissions</h3>
+                        <h3 class="card-title">{{ $user_role->user_role }} Role Permissions</h3>
                     </div>
                 </div>
             </div>

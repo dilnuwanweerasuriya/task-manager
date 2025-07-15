@@ -29,9 +29,7 @@ class DataController extends Controller
     public function getDashboardCounts(){
         $data = [
         'users'     => User::count(),
-        // 'clients'   => Client::count(),
-        // 'projects'  => Project::count(),
-        'tasks'     => Task::where('assigned_to', Auth::user()->id)->where('task_status', 1)->count(),
+        'tasks'     => Auth::user()->user_role == 2 ? Task::where('assigned_to', Auth::user()->id)->where('task_status', 1)->count() : Task::where('task_status', 1)->count(),
         ];
 
         return $data;
@@ -99,41 +97,43 @@ class DataController extends Controller
     //     return $data;
     // }
 
-    // public function getEditUserRole($id){
-    //     $data = UserRole::where('id',$id)->first();
-    //     return $data;
-    // }
+    //Get Edit User Role Function
+    public function getEditUserRole($id){
+        $data = UserRole::where('id',$id)->first();
+        return $data;
+    }
 
-    // protected function getPermission(){
+    //Get Permission Function
+    protected function getPermission(){
+        $permissions = Permission::all();
 
-    //     $permissions = Permission::all();
+        $permission_types = array();
 
-    //     $permission_types = array();
+        foreach ($permissions as $key => $permission) {
 
-    //     foreach ($permissions as $key => $permission) {
-
-    //         if(isset($permission_types[$permission->type])){
-    //             array_push($permission_types[$permission->type], $permission);
-    //         }else{
-    //             $permission_types[$permission->type][0] = $permission;
-    //         }
-    //     }
-    //     return $permission_types;
-    // }
+            if(isset($permission_types[$permission->type])){
+                array_push($permission_types[$permission->type], $permission);
+            }else{
+                $permission_types[$permission->type][0] = $permission;
+            }
+        }
+        return $permission_types;
+    }
 
 
-    // public function getUserRolePermission($id){
-    //     $data = UserRolePermissionMap::where('user_role',$id)->pluck('permission')->toArray();
-    //     return $data;
-    // }
+    //Get User Role Permission Function
+    public function getUserRolePermission($id){
+        $data = UserRolePermissionMap::where('user_role',$id)->pluck('permission')->toArray();
+        return $data;
+    }
 
-    // public function getUserimage(){
-    //     $data = DB::table('users')
-    //             ->join('user_image', 'user_image.id', '=', 'users.image')
-    //             ->where('users.id', Auth::user()->id)
-    //             ->select('user_image.name')
-    //             ->first();
+    public function getUserimage(){
+        $data = DB::table('users')
+                ->join('user_image', 'user_image.id', '=', 'users.image')
+                ->where('users.id', Auth::user()->id)
+                ->select('user_image.name')
+                ->first();
 
-    //     return $data;
-    // }
+        return $data;
+    }
 }

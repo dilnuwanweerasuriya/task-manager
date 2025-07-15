@@ -1,8 +1,8 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserRole">
+{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserRole">
     Add User Role
-</button>
+</button> --}}
 
-<div class="modal fade" id="addUserRole" tabindex="-1" role="dialog" aria-labelledby="addUserRoleTitle" aria-hidden="true">
+{{-- <div class="modal fade" id="addUserRole" tabindex="-1" role="dialog" aria-labelledby="addUserRoleTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -30,27 +30,40 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 
-<div id="table" class="mt-3">
-    <table id="user-role" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if($userRoles)
-                @foreach ($userRoles as $roles)
-                    <th>{{ $roles->user_role }}</th>
-                    <th><a href="/user-role-edit/{{ $roles->id }}"><i class="fas fa-solid fa-pen" style="color: black;"></i></a></th>
-                @endforeach
-            @endif
-        </tbody>
-    </table>
+<div class="card mt-3">
+    <div class="card-body">
+        <table id="user-role" class="table table-striped table-hover table-bordered table-head-fixed text-center"
+            style="width:100%">
+            <thead class="thead-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if($userRoles)
+                    @foreach ($userRoles as $roles)
+                    <tr>
+                        <td>{{ $roles->user_role }}</td>
+                        <td><a href="/user-role-edit/{{ $roles->id }}"><i class="fas fa-solid fa-pen" style="color: black;"></i></a></td>
+                    </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script>
-    let table = $('#user-role').DataTable();
+     $(document).ready(function() {
+        $('#user-role').DataTable({
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search users..."
+            }
+        });
+    });
 </script>

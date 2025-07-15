@@ -50,7 +50,6 @@ class ActionController extends Controller
 
         } catch (\Throwable $e) {
             DB::rollback();
-            dd($e);
             return redirect()->back()->with('error', "Something went wrong. Please try again later!")->withInput();
         }
     }
@@ -89,7 +88,6 @@ class ActionController extends Controller
 
         } catch (\Throwable $e) {
             DB::rollback();
-            dd($e);
             return redirect()->back()->with('error', "Something went wrong. Please try again later!")->withInput();
         }
     }
@@ -161,7 +159,6 @@ class ActionController extends Controller
 
         } catch (\Throwable $e) {
             DB::rollback();
-            dd($e);
             return redirect()->back()->with('error', "Something went wrong. Please try again later!")->withInput();
         }
     }
@@ -270,40 +267,42 @@ class ActionController extends Controller
     // }
 
 
-    // public function editUserRolePermissions(Request $request){
-    //     try {
-    //         DB::beginTransaction();
+    //Edit User Role Permissions Function
+    public function editUserRolePermissions(Request $request){
+        try {
+            DB::beginTransaction();
 
-    //         UserRolePermissionMap::where('user_role',$request->id)->delete();
+            UserRolePermissionMap::where('user_role',$request->id)->delete();
 
-    //         if($request->permission){
-    //             $this->permissionData($request->permission,$request->id);
-    //         }
+            if($request->permission){
+                $this->permissionData($request->permission,$request->id);
+            }
 
-    //         DB::commit();
+            DB::commit();
 
-    //         return redirect()->route('user-role-edit', $request->id)->with('success', 'User Role updated successfully!');
+            return redirect()->route('user-role-edit', $request->id)->with('success', 'User Role updated successfully!');
 
-    //     }
-    //     catch (\Throwable $e){
-    //         DB::rollback();
-    //         return redirect()->back()->with('error', "Something went wrong. Please try again later!".$e->getMessage());
-    //     }
-    // }
+        }
+        catch (\Throwable $e){
+            DB::rollback();
+            return redirect()->back()->with('error', "Something went wrong. Please try again later!".$e->getMessage());
+        }
+    }
 
 
-    // private function permissionData($permission,$user_role){
+    //Permission Data Function
+    private function permissionData($permission,$user_role){
 
-    //     $permissionData=array();
+        $permissionData=array();
 
-    //     foreach($permission as $key=> $permission){
-    //         $permissionData[$key] = array('permission'=>$permission,'user_role'=>$user_role);
-    //     }
+        foreach($permission as $key=> $permission){
+            $permissionData[$key] = array('permission'=>$permission,'user_role'=>$user_role);
+        }
 
-    //     UserRolePermissionMap::insert($permissionData);
+        UserRolePermissionMap::insert($permissionData);
 
-    //     return;
-    // }
+        return;
+    }
 
 
     public function changePassword(Request $request){
